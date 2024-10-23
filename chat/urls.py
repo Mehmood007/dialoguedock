@@ -15,5 +15,5 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='register'),
     path('logout', LogoutView.as_view(), name='logout'),
     path('home', HomeView.as_view(), name='home'),
-    path('chat_person', ChatPersonView.as_view(), name='chat_person'),
+    path('chat_person/<int:id>', ChatPersonView.as_view(), name='chat_person'),
 ]

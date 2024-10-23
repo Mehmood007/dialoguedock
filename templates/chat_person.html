@@ -203,7 +203,6 @@
             border-style: solid;
             max-height: 200px;
             font-size: small;
-            text-align: right;
             flex-grow: 1;
         }
         .details .status{
@@ -234,9 +233,9 @@
         <a href="{% url 'home' %}"><button>Back</button></a>
         <div>
             <img src="{% static 'images/face.png' %}">
-            <p>person's name</p>
+            <p>{{person.first_name}} {{person.last_name}}</p>
         </div>
-        <p class="name-of-sender">Me : the user's name</p>
+        <p class="name-of-sender">Me : {{user}}</p>
     </header>
 
     <div id="reversed_div" style="display: flex;flex-direction: column-reverse;margin: 0;padding: 0;border: 0;overflow: auto;max-width: 100%;">

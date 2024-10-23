@@ -7,7 +7,7 @@
 ## Features
 
 - Realtime Chats
-- Single and Group Chats
+- Messages stored in database
 
 
 ### Technologies Used

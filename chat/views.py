@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView
 
 
@@ -23,7 +23,7 @@ class LoginView(TemplateView):
         )
         if user != None:
             login(request, user)
-            return render(request, 'home.html')
+            return redirect('home')
 
         return render(request, 'login.html', {'error': 'Invalid Credentials'})
 
@@ -61,6 +61,19 @@ class LogoutView(TemplateView):
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        users = User.objects.all()
+        return {
+            'users': users,
+        }
+
 
 class ChatPersonView(LoginRequiredMixin, TemplateView):
     template_name = 'chat_person.html'
+
+    def get_context_data(self, **kwargs):
+        print(kwargs)
+        person = get_object_or_404(User, id=kwargs.get('id'))
+        return {
+            'person': person,
+        }
