@@ -1,10 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView
+
+from .models import Message
 
 
 class MainView(TemplateView):
@@ -72,8 +75,12 @@ class ChatPersonView(LoginRequiredMixin, TemplateView):
     template_name = 'chat_person.html'
 
     def get_context_data(self, **kwargs):
-        print(kwargs)
         person = get_object_or_404(User, id=kwargs.get('id'))
+        messages = Message.objects.filter(
+            (Q(sender=self.request.user) & Q(receiver=person))
+            | (Q(sender=person) & Q(receiver=self.request.user))
+        ).order_by('date', 'time')
         return {
+            'messages': messages,
             'person': person,
         }

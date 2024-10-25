@@ -1,13 +1,13 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Person</title>
     <style>
-        body{
+        body {
             padding: 0;
             margin: 0;
             border: 0;
@@ -16,10 +16,12 @@
             align-content: space-between;
             height: 100dvh;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
-        header{
+
+        header {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -28,7 +30,8 @@
             background-color: rgb(225, 225, 225);
             position: relative;
         }
-        header div{
+
+        header div {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -37,7 +40,8 @@
             background-color: rgb(225, 225, 225);
             position: relative;
         }
-        header img{
+
+        header img {
             padding: 2.5px;
             border-width: 2.5px;
             border-color: rgb(0, 0, 0);
@@ -48,12 +52,14 @@
             background-color: rgb(255, 255, 255);
             margin: 0;
         }
-        header p{
+
+        header p {
             color: rgb(35, 35, 35);
             margin: 0;
             padding: 2.5px;
         }
-        header button{
+
+        header button {
             margin: 0;
             border: 0;
             border-radius: 10px;
@@ -63,44 +69,51 @@
             height: 30px;
             font-size: 12px;
         }
-        header button:hover{
+
+        header button:hover {
             background-color: rgb(66, 66, 66);
         }
 
-        header button:active{
+        header button:active {
             background-color: rgb(15, 15, 15);
         }
-        .name-of-sender{
+
+        .name-of-sender {
             border-radius: 10px;
             background-color: rgb(200, 0, 0);
             padding: 10px;
             color: rgb(255, 255, 255);
             font-weight: bold;
         }
-        main{
+
+        main {
             display: flex;
             flex-direction: column;
             margin: 5px;
             padding: 5px;
             max-width: 100%;
         }
-        main section{
+
+        main section {
             display: flex;
             flex-direction: column;
             margin: 5px;
             padding: 5px;
         }
-        main section > div{
+
+        main section>div {
             display: flex;
             flex-direction: column;
             margin: 0;
             padding: 0;
             border: 0;
         }
-        main .to{
+
+        main .to {
             margin-right: 8%;
         }
-        main .to .details{
+
+        main .to .details {
             display: grid;
             grid-template-columns: auto auto auto;
             border-top-right-radius: 15px;
@@ -110,7 +123,8 @@
             padding: 0;
             border: 0;
         }
-        main .to .details > p{
+
+        main .to .details>p {
             font-size: 12px;
             color: rgb(255, 255, 255);
             text-align: center;
@@ -118,7 +132,8 @@
             padding: 2.5px;
             border: 0;
         }
-        main .to .message{
+
+        main .to .message {
             display: flex;
             border-bottom-right-radius: 15px;
             margin: 0;
@@ -126,7 +141,8 @@
             border: 0;
             background-color: rgb(115, 95, 175);
         }
-        main .to .message > p{
+
+        main .to .message>p {
             color: rgb(255, 255, 255);
             margin: 0;
             padding: 10px;
@@ -134,10 +150,12 @@
             text-wrap: wrap;
             text-overflow: clip;
         }
-        main .from{
+
+        main .from {
             margin-left: 8%;
         }
-        main .from .details{
+
+        main .from .details {
             display: grid;
             grid-template-columns: auto auto;
             border-top-right-radius: 15px;
@@ -147,7 +165,8 @@
             padding: 0;
             border: 0;
         }
-        main .from .details > p{
+
+        main .from .details>p {
             font-size: 12px;
             color: rgb(255, 255, 255);
             text-align: center;
@@ -155,7 +174,8 @@
             padding: 2.5px;
             border: 0;
         }
-        main .from .message{
+
+        main .from .message {
             display: flex;
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 15px;
@@ -164,21 +184,24 @@
             border: 0;
             background-color: rgb(70, 70, 70);
         }
-        main .from .message > p{
+
+        main .from .message>p {
             color: rgb(255, 255, 255);
             margin: 0;
             padding: 10px;
             border: 0;
             text-wrap: wrap;
         }
-        footer{
+
+        footer {
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 5px;
             padding: 5px;
         }
-        footer > button{
+
+        footer>button {
             margin: 0;
             border: 0;
             border-radius: 10px;
@@ -188,13 +211,16 @@
             height: 35px;
             margin: 5px;
         }
-        footer > button:hover{
+
+        footer>button:hover {
             background-color: rgb(117, 72, 207);
         }
-        footer > button:active{
+
+        footer>button:active {
             background-color: rgb(41, 13, 97);
         }
-        footer > textarea{
+
+        footer>textarea {
             margin: 5px;
             padding: 5px;
             border-radius: 10px;
@@ -205,29 +231,35 @@
             font-size: small;
             flex-grow: 1;
         }
-        .details .status{
+
+        .details .status {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .details .status div{
+
+        .details .status div {
             margin: 2.5px;
             width: 5.5px;
             height: 5.5px;
             background-color: rgb(255, 255, 255);
             border-radius: 50%;
         }
-        .details .seen div{
+
+        .details .seen div {
             background-color: rgb(0, 215, 255);
         }
-        .details .not-send div{
+
+        .details .not-send div {
             background-color: rgb(0, 0, 0);
         }
-        .details .failed-send div{
+
+        .details .failed-send div {
             background-color: rgb(255, 0, 0);
         }
     </style>
 </head>
+
 <body>
     <header>
         <a href="{% url 'home' %}"><button>Back</button></a>
@@ -238,33 +270,41 @@
         <p class="name-of-sender">Me : {{user}}</p>
     </header>
 
-    <div id="reversed_div" style="display: flex;flex-direction: column-reverse;margin: 0;padding: 0;border: 0;overflow: auto;max-width: 100%;">
+    <div id="reversed_div"
+        style="display: flex;flex-direction: column-reverse;margin: 0;padding: 0;border: 0;overflow: auto;max-width: 100%;">
         <main id="messages-area">
+            {% for message in messages %}
+            {% if message.sender == user %}
             <section class="from">
                 <div class="details">
-                    <p>2024-01-30</p>
-                    <div class="status"><div></div><div></div></div>
-                    <p>10:55:02</p>
+                    <p>{{message.date}}</p>
+                    <div class="status">
+                    </div>
+                    <p>{{message.time}}</p>
                 </div>
                 <div class="message">
-                    <p style="overflow-wrap: anywhere;">Message from you</p>
+                    <p style="overflow-wrap: anywhere;">{{message.message}}</p>
                 </div>
             </section>
-
+            {% else %}
             <section class="to">
                 <div class="details">
-                    <p>2024-01-30</p>
-                    <p>10:55:02</p>
+                    <p>{{message.date}}</p>
+                    <p>{{message.time}}</p>
                 </div>
                 <div class="message">
-                    <p style="overflow-wrap: anywhere;">Message from the other</p>
+                    <p style="overflow-wrap: anywhere;">{{message.message}}</p>
                 </div>
             </section>
+            {% endif %}
+            {% endfor %}
+
         </main>
     </div>
 
     <footer>
-        <textarea name="text" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'" id="the-message-to-send"></textarea>
+        <textarea name="text" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"
+            id="the-message-to-send"></textarea>
         <button id="send-message-button">Send</button>
     </footer>
 
@@ -272,7 +312,7 @@
 
         const messagesArea = document.getElementById("messages-area")
 
-        const url = `ws://127.0.0.1:8000/websocket`
+        const url = `ws://127.0.0.1:8000/websocket/{{person.id}}`
         const chatWebsocket = new WebSocket(url)
 
         const sendButton = document.getElementById("send-message-button")
@@ -280,7 +320,7 @@
         sendButton.addEventListener("click", () => {
             chatWebsocket.send(`{"type": "message", "message": "${textArea.value}"}`)
             messagesArea.insertAdjacentHTML("beforeend",
-            `<section class="from">
+                `<section class="from">
                 <div class="details">
                     <p>${new Date().toISOString().split('T')[0]}</p>
                     <div class="status"><div></div><div></div></div>
@@ -294,10 +334,22 @@
             textArea.value = ""
         })
 
-        chatWebsocket.onmessage = function(event){
-            console.log(event.data)
+        chatWebsocket.onmessage = function (event) {
+            messagesArea.insertAdjacentHTML("beforeend",
+                `<section class="to">
+                <div class="details">
+                    <p>${new Date().toISOString().split('T')[0]}</p>
+                    <div class="status"><div></div><div></div></div>
+                    <p>${new Date().toLocaleTimeString()}</p>
+                </div>
+                <div class="message">
+                    <p style="overflow-wrap: anywhere;">${event.data}</p>
+                </div>
+            </section>
+            `)
         }
 
     </script>
 </body>
+
 </html>
