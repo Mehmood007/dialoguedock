@@ -10,11 +10,19 @@ from .models import Message
 
 class ChatComsumer(WebsocketConsumer):
     def connect(self):
+        self.user_id = self.scope['user'].id
+        self.other_person_id = self.scope['url_route']['kwargs']['id']
+
         async_to_sync(self.channel_layer.group_add)(
-            f'chat_{self.scope['user'].id}', self.channel_name
+            f'chat_{self.user_id}_{self.other_person_id}', self.channel_name
         )
 
         return super().connect()
+
+    def disconnect(self, close_code):
+        async_to_sync(self.channel_layer.group_discard)(
+            f'chat_{self.user_id}_{self.other_person_id}', self.channel_name
+        )
 
     def receive(self, text_data=None, bytes_data=None):
         other_person_id = self.scope['url_route']['kwargs']['id']
@@ -35,7 +43,7 @@ class ChatComsumer(WebsocketConsumer):
             }
 
             async_to_sync(self.channel_layer.group_send)(
-                f'chat_{other_person_id}', event
+                f'chat_{other_person_id}_{self.user_id}', event
             )
         except:
             pass
